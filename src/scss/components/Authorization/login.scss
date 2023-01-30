@@ -1,0 +1,36 @@
+@import '../../normalize';
+
+.login {
+  width: 550px;
+  margin: 225px auto;
+  border: 5px solid;
+  background-color: rgb(220, 220, 220);
+
+  &__title {
+    font-weight: normal;
+    font-size: 25px;
+    text-align: center;
+    margin: 15px 0px;
+  }
+
+  & input {
+    width: 100px;
+    align-items: center;
+  }
+
+  &__button {
+  }
+
+  #components-form-demo-normal-login .login-form {
+    max-width: 300px;
+  }
+  #components-form-demo-normal-login .login-form-forgot {
+    float: right;
+  }
+  #components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
+    float: left;
+  }
+  #components-form-demo-normal-login .login-form-button {
+    width: 100%;
+  }
+}
