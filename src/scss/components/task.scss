@@ -1,0 +1,38 @@
+.todo-list__task {
+  display: flex;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  justify-content: space-between;
+
+  &:hover {
+    background-color: #04395e3d;
+  }
+
+  & li {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    color: var(--text);
+  }
+
+  .task__buttons {
+    display: flex;
+
+    & p {
+      margin-left: 10px;
+
+      &:hover {
+        background-color: #021b2c3d;
+      }
+    }
+  }
+}
+
+.task-done {
+  background-color: #02020263; // #00000027;
+
+  & li {
+    text-decoration: line-through;
+  }
+}
