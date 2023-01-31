@@ -16,7 +16,10 @@ export const Login = () => {
         localStorage.setItem('token', data.token);
         navigate('/todo');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        alert(err.response.data.message);
+        console.log(err);
+      });
   };
 
   return (

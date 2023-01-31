@@ -1,6 +1,6 @@
 import { Button, Form, Input, InputNumber, Select } from 'antd';
 import axios from 'axios';
-import { Link, NavLink, redirect } from 'react-router-dom';
+import { NavLink, redirect } from 'react-router-dom';
 
 const { Option } = Select;
 const formItemLayout = {
@@ -18,18 +18,6 @@ const formItemLayout = {
     },
     sm: {
       span: 16,
-    },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
     },
   },
 };
