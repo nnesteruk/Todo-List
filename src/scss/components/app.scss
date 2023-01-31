@@ -1,0 +1,13 @@
+@import '../normalize';
+@import '../components/Authorization/login.scss';
+@import '../components/Authorization/registration.scss';
+@import '../components/task.scss';
+@import '../components/todo-List.scss';
+
+.active-link {
+  color: rgb(144, 17, 17);
+
+  &:hover {
+    color: #3d71bd;
+  }
+}
