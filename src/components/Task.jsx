@@ -10,7 +10,7 @@ export const Task = ({ item, doneTask, removeTask, editTask }) => {
   };
 
   if (edit) {
-    return <TaskInput submitUpdate={submitUpdate} edit={edit} setEdit={setEdit} />;
+    return <TaskInput submitUpdate={submitUpdate} edit={edit} />;
   }
 
   const className = 'todo-list__task ' + (item.isCompleted ? ' task-done' : '');
