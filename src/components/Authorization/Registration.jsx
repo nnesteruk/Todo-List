@@ -1,6 +1,6 @@
 import { Button, Form, Input, InputNumber, Select } from 'antd';
 import axios from 'axios';
-import { NavLink, redirect } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
 const formItemLayout = {
@@ -23,6 +23,7 @@ const formItemLayout = {
 };
 
 export const Registration = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
@@ -31,7 +32,7 @@ export const Registration = () => {
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
     alert('Registration is succsessfuly');
-    redirect('/');
+    navigate('/');
   };
 
   return (
