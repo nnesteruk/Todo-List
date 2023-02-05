@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const TaskInput = ({ addTask, submitUpdate, edit, setEdit }) => {
+export const TaskInput = ({ addTask, submitUpdate, edit }) => {
   const [value, setValue] = useState(edit ? edit.title : '');
   const inputRef = useRef(null);
 
@@ -21,6 +21,7 @@ export const TaskInput = ({ addTask, submitUpdate, edit, setEdit }) => {
         id: new Date().getTime(),
         title: value,
         isCompleted: false,
+        userId: localStorage.getItem('token'),
       });
       setValue('');
     } else {
