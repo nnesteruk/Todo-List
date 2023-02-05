@@ -6,14 +6,14 @@ import {
   doneTaskAction,
   editTaskAction,
   removeTaskAction,
-} from '../redux/reducers/TaskReducer';
+} from '../redux/task/slice';
 import { Task } from './Task';
 import { TaskInput } from './TaskInput';
 
 export const TaskList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks);
+  const tasks = useSelector((state) => state.task.tasks);
   console.log(tasks);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 
