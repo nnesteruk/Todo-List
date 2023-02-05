@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import {
   addTaskAction,
   doneTaskAction,
-  editTaskAction,
   removeTaskAction,
+  updateTaskAction,
 } from '../redux/task/slice';
 import { Task } from './Task';
 import { TaskInput } from './TaskInput';
@@ -22,10 +22,7 @@ export const TaskList = () => {
   const doneTasks = tasks.filter((item) => item.isCompleted);
 
   const doneTask = (id) => {
-    const copy = [...tasks];
-    const current = copy.find((item) => item.id === id);
-    current.isCompleted = !current.isCompleted;
-    dispatch(doneTaskAction(copy));
+    dispatch(doneTaskAction(id));
   };
 
   const removeTask = (id) => dispatch(removeTaskAction(id));
@@ -35,10 +32,8 @@ export const TaskList = () => {
   };
 
   const editTask = (id, newTitle) => {
-    const copy = [...tasks];
-    const current = copy.find((item) => item.id === id);
-    current.title = newTitle;
-    dispatch(editTaskAction(copy));
+    const current = { id, newTitle };
+    dispatch(updateTaskAction({ ...current }));
   };
 
   const exit = () => {

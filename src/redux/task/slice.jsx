@@ -8,21 +8,23 @@ export const taskSlice = createSlice({
   name: 'task',
   initialState,
   reducers: {
-    addTask(state, action) {
+    addTaskAction(state, action) {
+      console.log(action);
       state.tasks.push({ ...action.payload });
     },
 
-    removeTask(state, action) {
+    removeTaskAction(state, action) {
       state.tasks = state.tasks.filter((item) => item.id !== action.payload);
     },
 
-    updateTask(state, action) {
+    updateTaskAction(state, action) {
+      console.log(action);
       const copy = [...state.tasks];
-      const current = copy.find((item) => item === action.payload);
-      current.title = action.payload;
+      const current = copy.find((item) => item.id === action.payload.id);
+      current.title = action.payload.newTitle;
     },
 
-    doneTask(state, action) {
+    doneTaskAction(state, action) {
       const copy = [...state.tasks];
       const current = copy.find((item) => item === action.payload);
       current.isCompleted = !current.isCompleted;
@@ -30,7 +32,8 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { addTask, removeTask, updateTask, doneTask } = taskSlice.actions;
+export const { addTaskAction, removeTaskAction, updateTaskAction, doneTaskAction } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
 
