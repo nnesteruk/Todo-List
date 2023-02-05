@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { doneTaskAction, removeTaskAction, updateTaskAction } from '../redux/task/slice';
 import { TaskInput } from './TaskInput';
 
-export const Task = ({ item, doneTask, removeTask, editTask }) => {
+export const Task = ({ item }) => {
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(null);
 
   const submitUpdate = (id, newTitle) => {
-    editTask(id, newTitle);
+    const task = { id, newTitle };
+    dispatch(updateTaskAction({ ...task }));
     setEdit(null);
   };
+  const doneTask = (id) => dispatch(doneTaskAction(id));
+  const removeTask = (id) => dispatch(removeTaskAction(id));
 
   if (edit) {
     return <TaskInput submitUpdate={submitUpdate} edit={edit} />;

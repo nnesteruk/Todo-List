@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTaskAction } from '../redux/task/slice';
 
-export const TaskInput = ({ addTask, submitUpdate, edit }) => {
+export const TaskInput = ({ submitUpdate, edit }) => {
   const [value, setValue] = useState(edit ? edit.title : '');
   const inputRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const addTask = (task) => dispatch(addTaskAction(task));
 
   useEffect(() => {
     inputRef.current.focus();
