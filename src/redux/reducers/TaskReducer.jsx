@@ -1,5 +1,6 @@
 const defaultState = {
   tasks: JSON.parse(localStorage.getItem('tasks')) || [],
+  edit: null,
 };
 
 const ADD_TASK = 'ADD_TASK';
