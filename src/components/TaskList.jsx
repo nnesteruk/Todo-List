@@ -17,11 +17,6 @@ export const TaskList = () => {
   console.log(tasks);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 
-  // const [tasks, setTasks] = useState([
-  //   { id: 1, title: 'TODO task', isCompleted: false },
-  //   { id: 2, title: '11 task', isCompleted: true },
-  // ]);
-
   const activeTasks = tasks.filter((item) => !item.isCompleted);
 
   const doneTasks = tasks.filter((item) => item.isCompleted);
@@ -30,15 +25,12 @@ export const TaskList = () => {
     const copy = [...tasks];
     const current = copy.find((item) => item.id === id);
     current.isCompleted = !current.isCompleted;
-    // setTasks(copy);
     dispatch(doneTaskAction(copy));
   };
 
   const removeTask = (id) => dispatch(removeTaskAction(id));
-  // const removeTask = (id) => setTasks(tasks.filter((item) => item.id !== id));
 
   const addTask = (task) => {
-    // setTasks([...tasks, task]);
     dispatch(addTaskAction(task));
   };
 
@@ -46,7 +38,6 @@ export const TaskList = () => {
     const copy = [...tasks];
     const current = copy.find((item) => item.id === id);
     current.title = newTitle;
-    // setTasks(copy);
     dispatch(editTaskAction(copy));
   };
 
