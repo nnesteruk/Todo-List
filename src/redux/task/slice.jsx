@@ -18,15 +18,12 @@ export const taskSlice = createSlice({
     },
 
     updateTaskAction(state, action) {
-      console.log(action);
-      const copy = [...state.tasks];
-      const current = copy.find((item) => item.id === action.payload.id);
+      const current = [...state.tasks].find((item) => item.id === action.payload.id);
       current.title = action.payload.newTitle;
     },
 
     doneTaskAction(state, action) {
-      const copy = [...state.tasks];
-      const current = copy.find((item) => item === action.payload);
+      const current = [...state.tasks].find((item) => item.id === action.payload);
       current.isCompleted = !current.isCompleted;
     },
   },
