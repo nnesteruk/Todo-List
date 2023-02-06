@@ -1,14 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getTasks } from '../redux/task/AsyncActions';
 import { Task } from './Task';
 import { TaskInput } from './TaskInput';
 
 export const TaskList = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.task.tasks);
   console.log(tasks);
   localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  useEffect(() => {
+    dispatch(getTasks());
+  }, []);
 
   const activeTasks = tasks.filter((item) => !item.isCompleted);
 
