@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { addTaska } from '../redux/task/AsyncActions';
 import { addTaskAction } from '../redux/task/slice';
 
 export const TaskInput = ({ submitUpdate, edit }) => {
@@ -7,7 +8,8 @@ export const TaskInput = ({ submitUpdate, edit }) => {
   const inputRef = useRef(null);
   const dispatch = useDispatch();
 
-  const addTask = (task) => dispatch(addTaskAction(task));
+  // const addTask = (task) => dispatch(addTaskAction(task));
+  const addTask = (task) => dispatch(addTaska(task));
 
   useEffect(() => {
     inputRef.current.focus();
@@ -23,10 +25,10 @@ export const TaskInput = ({ submitUpdate, edit }) => {
       submitUpdate(edit.id, value);
     } else if (value) {
       addTask({
-        id: new Date().getTime(),
+        // id: new Date().getTime(),
         title: value,
-        isCompleted: false,
-        userId: localStorage.getItem('token'),
+        // isCompleted: false,
+        // userId: localStorage.getItem('token'),
       });
       setValue('');
     } else {

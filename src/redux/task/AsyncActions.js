@@ -3,9 +3,8 @@ import axios from "axios";
 
 
 const token = localStorage.getItem('token');
-
 const instance = axios.create({
-    baseURL: 'https://first-node-js-app-r.herokuapp.com/api/',
+    baseURL: 'https://first-node-js-app-r.herokuapp.com/api',
     timeout: 1000,
     headers: { 'Authorization': 'Bearer ' + token }
 });
@@ -16,9 +15,23 @@ export const getTasks = createAsyncThunk(
         try {
             const response = await instance.get('/todos')
             console.log(response)
+            localStorage.setItem('tasks', JSON.stringify(response.data));
             return response.data
         } catch (err) {
             thunkApi.rejectWithValue('Не удалось загрузить задачи')
+        }
+    }
+)
+
+export const addTaska = createAsyncThunk(
+    'tasks/fetchAddTask',
+    async (task, thunkApi) => {
+        try {
+            const response = await instance.post('/todos', task)
+            console.log(response)
+            return response.data
+        } catch (err) {
+            return thunkApi.rejectWithValue('Не удалось добавить задачу')
         }
     }
 )

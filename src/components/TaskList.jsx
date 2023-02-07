@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { taskApi } from '../redux/servises/taskApi';
 import { getTasks } from '../redux/task/AsyncActions';
 import { Task } from './Task';
 import { TaskInput } from './TaskInput';
@@ -8,17 +9,18 @@ import { TaskInput } from './TaskInput';
 export const TaskList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.task.tasks);
-  console.log(tasks);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  // const tasks = useSelector((state) => state.task.tasks);
+  // const {data} = taskApi.useGetTasksQuery('');
+  console.log(taskApi.useGetTasksQuery(''));
+  // localStorage.setItem('tasks', JSON.stringify(tasks));
 
-  useEffect(() => {
-    dispatch(getTasks());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getTasks());
+  // }, []);
 
-  const activeTasks = tasks.filter((item) => !item.isCompleted);
+  // const activeTasks = tasks.filter((item) => !item.isCompleted);
 
-  const doneTasks = tasks.filter((item) => item.isCompleted);
+  // const doneTasks = tasks.filter((item) => item.isCompleted);
 
   const exit = () => {
     navigate('/');
@@ -34,13 +36,13 @@ export const TaskList = () => {
         </button>
       </div>
       <div>
-        {tasks.length ? (
+        {/* {tasks.length ? (
           [...activeTasks, ...doneTasks].map((item) => {
-            return <Task item={item} key={item.id} />;
+            return <Task item={item} key={item.ID} />;
           })
         ) : (
           <p className="todo-list__null">Add your first task</p>
-        )}
+        )} */}
       </div>
       <TaskInput />
     </div>

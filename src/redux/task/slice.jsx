@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getTasks } from './AsyncActions';
+import { addTaska, getTasks } from './AsyncActions';
 
 const initialState = {
   tasks: JSON.parse(localStorage.getItem('tasks')) || [],
@@ -37,8 +37,21 @@ export const taskSlice = createSlice({
     [getTasks.fulfilled.type]: (state, action) => {
       state.isLoading = false;
       state.tasks = action.payload;
+      state.error = '';
     },
     [getTasks.rejected.type]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [addTaska.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [addTaska.fulfilled.type]: (state, action) => {
+      state.isLoading = false;
+      state.tasks.push({ ...action.payload });
+      state.error = '';
+    },
+    [addTaska.rejected.type]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
