@@ -1,15 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTaska } from '../redux/task/AsyncActions';
-import { addTaskAction } from '../redux/task/slice';
+import { taskApi } from '../redux/servises/taskApi';
 
 export const TaskInput = ({ submitUpdate, edit }) => {
   const [value, setValue] = useState(edit ? edit.title : '');
   const inputRef = useRef(null);
-  const dispatch = useDispatch();
 
+  //!Через Redux-Thunk
   // const addTask = (task) => dispatch(addTaskAction(task));
-  const addTask = (task) => dispatch(addTaska(task));
+  // console.log(taskApi.useAddTaskMutation(value));
+  // const addTask = (task) => dispatch(addTaska(task));
+
+  const [add, {}] = taskApi.useAddTaskMutation();
+  const addTask = async (task) => {
+    const response = await add(task);
+    console.log(response);
+    return response;
+  };
 
   useEffect(() => {
     inputRef.current.focus();
@@ -22,13 +28,10 @@ export const TaskInput = ({ submitUpdate, edit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (edit) {
-      submitUpdate(edit.id, value);
+      submitUpdate(edit.ID, value);
     } else if (value) {
       addTask({
-        // id: new Date().getTime(),
         title: value,
-        // isCompleted: false,
-        // userId: localStorage.getItem('token'),
       });
       setValue('');
     } else {
