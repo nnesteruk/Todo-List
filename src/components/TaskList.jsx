@@ -5,7 +5,6 @@ import { TaskInput } from './TaskInput';
 
 export const TaskList = () => {
   const navigate = useNavigate();
-  // const tasks = useSelector((state) => state.task.tasks);//!Через Redux-Thunk
 
   const { data: tasks, isSuccess, error } = taskApi.useGetTasksQuery('');
 

@@ -5,11 +5,6 @@ export const TaskInput = ({ submitUpdate, edit }) => {
   const [value, setValue] = useState(edit ? edit.title : '');
   const inputRef = useRef(null);
 
-  //!Через Redux-Thunk
-  // const addTask = (task) => dispatch(addTaskAction(task));
-  // console.log(taskApi.useAddTaskMutation(value));
-  // const addTask = (task) => dispatch(addTaska(task));
-
   const [add, {}] = taskApi.useAddTaskMutation();
   const addTask = async (task) => {
     const response = await add(task);

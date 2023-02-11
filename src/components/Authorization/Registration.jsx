@@ -28,7 +28,7 @@ export const Registration = () => {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     axios
-      .post('https://first-node-js-app-r.herokuapp.com/api/users/register', values)
+      .post(`${process.env.REACT_APP_BASEURL}/users/register`, values)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
     alert('Registration is succsessfuly');
