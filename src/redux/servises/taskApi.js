@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const taskApi = createApi({
     reducerPath: 'taskApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://first-node-js-app-r.herokuapp.com/api', prepareHeaders: (headers) => {
+        baseUrl: `${process.env.REACT_APP_BASEURL}`, prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`)

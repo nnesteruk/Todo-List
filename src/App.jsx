@@ -8,13 +8,21 @@ import {
 import './scss/components/app.scss';
 import { Registration } from './components/Authorization/Registration';
 import { TaskList } from './components/TaskList';
+import { PrivateRoute } from './hoc/PrivateRoute';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Login />} />
       <Route path="/registration" element={<Registration />} />
-      <Route path="/todo" element={<TaskList />} />
+      <Route
+        path="/todo"
+        element={
+          <PrivateRoute>
+            <TaskList />
+          </PrivateRoute>
+        }
+      />
     </Route>,
   ),
 );

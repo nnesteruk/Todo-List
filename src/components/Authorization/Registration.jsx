@@ -26,11 +26,10 @@ export const Registration = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
     axios
       .post(`${process.env.REACT_APP_BASEURL}/users/register`, values)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+      .then((response) => response)
+      .catch((error) => error);
     alert('Registration is succsessfuly');
     navigate('/');
   };

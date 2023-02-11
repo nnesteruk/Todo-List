@@ -8,17 +8,14 @@ import icon from '../../assets/img/logo192.png';
 export const Login = () => {
   const navigate = useNavigate();
   const onFinish = (values) => {
-    console.log('Success:', values);
     axios
       .post(`${process.env.REACT_APP_BASEURL}/auth/login`, values)
       .then(({ data }) => {
-        console.log(data.token);
         localStorage.setItem('token', data.token);
         navigate('/todo');
       })
       .catch((err) => {
         alert(err.response.data.message);
-        console.log(err);
       });
   };
 

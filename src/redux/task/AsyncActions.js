@@ -14,7 +14,6 @@ export const getTasks = createAsyncThunk(
     async (_, thunkApi) => {
         try {
             const response = await instance.get('/todos')
-            console.log(response)
             localStorage.setItem('tasks', JSON.stringify(response.data));
             return response.data
         } catch (err) {
@@ -28,7 +27,6 @@ export const addTaska = createAsyncThunk(
     async (task, thunkApi) => {
         try {
             const response = await instance.post('/todos', task)
-            console.log(response)
             return response.data
         } catch (err) {
             return thunkApi.rejectWithValue('Не удалось добавить задачу')

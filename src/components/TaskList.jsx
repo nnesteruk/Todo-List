@@ -26,7 +26,7 @@ export const TaskList = () => {
         </button>
       </div>
       <div>
-        {tasks ? (
+        {isSuccess && tasks.length ? (
           [...activeTasks, ...doneTasks].map((item) => <Task item={item} key={item.ID} />)
         ) : (
           <p className="todo-list__null">Add your first task</p>

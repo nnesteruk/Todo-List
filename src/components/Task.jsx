@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { taskApi } from '../redux/servises/taskApi';
 import { TaskInput } from './TaskInput';
 
-export const Task = ({ item }) => {
-  const { ID, title, isCompleted } = item;
+export const Task = ({ item: { ID, title, isCompleted } }) => {
   const [edit, setEdit] = useState(null);
 
   const [update, {}] = taskApi.useUpdateTaskMutation();
@@ -16,14 +15,12 @@ export const Task = ({ item }) => {
   const [done, {}] = taskApi.useDoneTaskMutation();
   const doneTask = async (id) => {
     const response = await done(id);
-    console.log(response);
     return response;
   };
 
   const [remove, {}] = taskApi.useRemoveTaskMutation();
   const removeTask = async (id) => {
     const response = await remove(id);
-    console.log(response);
     return response;
   };
 

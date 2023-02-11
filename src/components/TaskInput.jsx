@@ -8,7 +8,6 @@ export const TaskInput = ({ submitUpdate, edit }) => {
   const [add, {}] = taskApi.useAddTaskMutation();
   const addTask = async (task) => {
     const response = await add(task);
-    console.log(response);
     return response;
   };
 
