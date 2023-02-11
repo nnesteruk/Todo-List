@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { taskApi } from '../redux/servises/taskApi';
 import { TaskInput } from './TaskInput';
 
 export const Task = ({ item }) => {
-  const dispatch = useDispatch();
   const { ID, title, isCompleted } = item;
   const [edit, setEdit] = useState(null);
 
