@@ -31,7 +31,7 @@ export const Registration = () => {
       .then((response) => response)
       .catch((error) => error);
     alert('Registration is succsessfuly');
-    navigate('/');
+    navigate('/Todo-List/');
   };
 
   return (
@@ -146,7 +146,7 @@ export const Registration = () => {
           </Button>
           <p>
             Уже есть аккаунт?{' '}
-            <NavLink to="/" className={({ isActive }) => (isActive ? '' : 'active-link')}>
+            <NavLink to="/Todo-List" className={({ isActive }) => (isActive ? '' : 'active-link')}>
               Войти
             </NavLink>
           </p>

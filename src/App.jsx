@@ -13,7 +13,7 @@ import { PrivateRoute } from './hoc/PrivateRoute';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<Login />} />
+      <Route path="/Todo-List" element={<Login />} />
       <Route path="/registration" element={<Registration />} />
       <Route
         path="/todo"

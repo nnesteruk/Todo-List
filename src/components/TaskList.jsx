@@ -12,7 +12,7 @@ export const TaskList = () => {
   const doneTasks = isSuccess && tasks.filter((item) => item.isCompleted);
 
   const exit = () => {
-    navigate('/');
+    navigate('/Todo-List');
     localStorage.clear();
   };
 
