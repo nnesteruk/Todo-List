@@ -1,8 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import { taskApi } from '../redux/servises/taskApi';
 
-export const TaskInput = ({ addTask, submitUpdate, edit, setEdit }) => {
+export const TaskInput = ({ submitUpdate, edit }) => {
   const [value, setValue] = useState(edit ? edit.title : '');
   const inputRef = useRef(null);
+
+  const [add, {}] = taskApi.useAddTaskMutation();
+  const addTask = async (task) => {
+    const response = await add(task);
+    return response;
+  };
 
   useEffect(() => {
     inputRef.current.focus();
@@ -15,12 +22,10 @@ export const TaskInput = ({ addTask, submitUpdate, edit, setEdit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (edit) {
-      submitUpdate(edit.id, value);
+      submitUpdate(edit.ID, value);
     } else if (value) {
       addTask({
-        id: new Date().getTime(),
         title: value,
-        isCompleted: false,
       });
       setValue('');
     } else {

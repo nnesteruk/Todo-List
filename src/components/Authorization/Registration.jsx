@@ -1,6 +1,6 @@
 import { Button, Form, Input, InputNumber, Select } from 'antd';
 import axios from 'axios';
-import { NavLink, redirect } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
 const formItemLayout = {
@@ -23,15 +23,15 @@ const formItemLayout = {
 };
 
 export const Registration = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
     axios
-      .post('https://first-node-js-app-r.herokuapp.com/api/users/register', values)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+      .post(`${process.env.REACT_APP_BASEURL}/users/register`, values)
+      .then((response) => response)
+      .catch((error) => error);
     alert('Registration is succsessfuly');
-    redirect('/');
+    navigate('/Todo-List/');
   };
 
   return (
@@ -146,7 +146,7 @@ export const Registration = () => {
           </Button>
           <p>
             Уже есть аккаунт?{' '}
-            <NavLink to="/" className={({ isActive }) => (isActive ? '' : 'active-link')}>
+            <NavLink to="/Todo-List" className={({ isActive }) => (isActive ? '' : 'active-link')}>
               Войти
             </NavLink>
           </p>

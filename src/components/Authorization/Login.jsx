@@ -8,17 +8,14 @@ import icon from '../../assets/img/logo192.png';
 export const Login = () => {
   const navigate = useNavigate();
   const onFinish = (values) => {
-    console.log('Success:', values);
     axios
-      .post('https://first-node-js-app-r.herokuapp.com/api/auth/login', values)
+      .post(`${process.env.REACT_APP_BASEURL}/auth/login`, values)
       .then(({ data }) => {
-        console.log(data.token);
         localStorage.setItem('token', data.token);
         navigate('/todo');
       })
       .catch((err) => {
         alert(err.response.data.message);
-        console.log(err);
       });
   };
 
@@ -26,7 +23,6 @@ export const Login = () => {
     <div className="login">
       <img className="login__icon" src={icon} alt="Icon" />
       <h1 className="login__title">Вход</h1>
-
       <Form
         name="normal_login"
         className="login-form"

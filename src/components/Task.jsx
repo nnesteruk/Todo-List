@@ -1,34 +1,47 @@
 import React, { useState } from 'react';
+import { taskApi } from '../redux/servises/taskApi';
 import { TaskInput } from './TaskInput';
 
-export const Task = ({ item, doneTask, removeTask, editTask }) => {
+export const Task = ({ item: { ID, title, isCompleted } }) => {
   const [edit, setEdit] = useState(null);
 
-  const submitUpdate = (id, newTitle) => {
-    editTask(id, newTitle);
+  const [update, {}] = taskApi.useUpdateTaskMutation();
+
+  const submitUpdate = async (ID, newTitle) => {
+    const task = { ID, newTitle };
+    await update({ ...task });
     setEdit(null);
+  };
+  const [done, {}] = taskApi.useDoneTaskMutation();
+  const doneTask = async (id) => {
+    const response = await done(id);
+    return response;
+  };
+
+  const [remove, {}] = taskApi.useRemoveTaskMutation();
+  const removeTask = async (id) => {
+    const response = await remove(id);
+    return response;
   };
 
   if (edit) {
-    return <TaskInput submitUpdate={submitUpdate} edit={edit} setEdit={setEdit} />;
+    return <TaskInput submitUpdate={submitUpdate} edit={edit} />;
   }
 
-  const className = 'todo-list__task ' + (item.isCompleted ? ' task-done' : '');
+  const className = 'todo-list__task ' + (isCompleted ? ' task-done' : '');
 
   return (
     <div className={className}>
-      <li onClick={() => doneTask(item.id)} key={item.id}>
-        {item.title}
+      <li onClick={() => doneTask(ID)} key={ID}>
+        {title}
       </li>
       <div className="task__buttons">
         <p
           className="task__buttons-action"
-          onClick={() =>
-            setEdit({ id: item.id, title: item.title, isCompleted: item.isCompleted })
-          }>
+          onClick={() => setEdit({ ID: ID, title: title, isCompleted: isCompleted })}>
           🖉
         </p>
-        <p className="task__buttons-action" onClick={() => removeTask(item.id)}>
+        <p className="task__buttons-action" onClick={() => removeTask(ID)}>
           ❌
         </p>
       </div>
